@@ -1,0 +1,29 @@
+<html ng-app="todoApp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.7/angular.min.js"></script>
+
+		<script>
+   angular.module('todoApp', [])
+  .controller('TodoController', ['$scope','$http', function($scope,$http) {
+  	$http.post('/images')
+  	.success(function(data){
+  		$scope.images = data;
+  	}).
+  	error(function(data){
+  		
+  	});
+   
+
+  }]);
+	</script>
+	</head>
+
+	<body ng-controller="TodoController">
+	     <img ng-repeat="img in images" ng-src="{{img.url}}" width="500" height="500">
+		<form action="upload" method="post" enctype="multipart/form-data">
+			Image : <input type="file" name="pic"><br>
+			<input type="text" name="name">
+			<input type="submit">	
+		</form>
+	</body>
+</html>
